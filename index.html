@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="./js/app.js"></script>
+    <link href="./css/main.css" rel="stylesheet" type="text/css">
+    <link rel="icon" href="/images/favicon.png">
+</head>
+
+<body ng-app="welcomeApp">
+    <header>
+        <img src="images/logo.png" alt="The Welcome Weather logo.">
+        <input id="search-field" type="text" alt="Search for your city Ex: 'Charlotte, NC' ">
+        <button id="search-button" type="button">Search</button>
+    </header>
+    <div id="content" ng-view></div>
+
+</body>
+
+</html>

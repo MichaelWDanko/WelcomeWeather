@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+   <main>
+    <div id="left-column">
+        <h2> {{city}} </h2>
+        <div id="current-temp">
+            <h3> {{Weather}} </h3>
+            <img src="" alt="The fahrenheit icon">
+        </div>
+        <h4 id="windspeed">Windspeed: {{ windspeed }} MPH</h4>
+        <h4 id="sunrise">Sunrise: {{ sunrise }} AM </h4>
+        <h4 id="sunset">Sunset: {{ sunset }} PM </h4>
+    </div>
+    <div id="right-column">
+        <div id="current-day-wrapper">
+            <h2 id="current-day"> {{ day }} </h2>
+            <h4 id="current-date"> {{date}} </h4>
+        </div>
+        <h4>You might be comfortable wearing:</h4>
+        <ul id="suggestin-list" ng-repeat="item in suggest">
+
+        </ul>
+    </div>
+</main>
+<ul id="navbar">
+    <a href="#/today">
+        <li id="nav-today">
+            <h2>Today</h2></li>
+    </a>
+    <a href="#/tomorrow">
+        <li id="nav-one">
+            <h2>1 {{navOne}} </h2></li>
+    </a>
+    <a href="#/two-days-from-now">
+        <li id="nav-two">
+            <h2>2 {{navTwo}} </h2></li>
+    </a>
+    <a href="#/three-days-from-now">
+        <li id="nav-three">
+            <h2>3 {{navThree}} </h2></li>
+    </a>
+    <a href="#/four-days-from-now">
+        <li id="nav-four">
+            <h2>4 {{navfour}} </h2></li>
+    </a>
+</ul>
