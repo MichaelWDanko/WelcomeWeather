@@ -12,7 +12,7 @@ module.exports = (function () {
 
         var latitude = 0;
         var longitude = 0;
-//        var cityName = "Default City Name";
+        //        var cityName = "Default City Name";
 
         function getLatLong() {
             return new Promise(function (resolve, reject) {
@@ -20,6 +20,7 @@ module.exports = (function () {
                     console.log(`Geolocation is accessible`);
                     navigator.geolocation.getCurrentPosition(function (position) {
                         console.log(position);
+
                         resolve({
                             longitude: position.coords.longitude,
                             latitude: position.coords.latitude,
@@ -33,17 +34,23 @@ module.exports = (function () {
         }
 
 
-
         function getCoordinateWeather(longitude, latitude) {
             //Retrieve the weather given a longitude/latitude from WorldWeatherOnline.com
-            $http({
-                    method: 'GET',
-                    url: "http://api.worldweatheronline.com/premium/v1/weather.ashx?key=0bc76a7e21c94295aa7192226160905&q=" + latitude + ',' + longitude + "&includelocation=yes&num_of_days=5&format=json"
+            return getLatLong().then(function (position) {
+
+                    return $http({
+                        method: 'GET',
+                        url: "http://api.worldweatheronline.com/premium/v1/weather.ashx?key=0bc76a7e21c94295aa7192226160905&q=" + position.latitude + ',' + position.longitude + "&includelocation=yes&num_of_days=5&format=json"
+                    });
                 })
                 .then(function (response) {
+//                    console.log('The weather:');
 //                    console.log(response);
+                    return response.data.data;
                 });
         }
+        getCoordinateWeather();
+
 
         //Using a latitude/longitude paramters, use the Google Geocode API to return the city.
         function getCityName() {
@@ -57,15 +64,15 @@ module.exports = (function () {
                 });
             }).
             then(function (response) {
-                     console.log('getCityName');
-                     console.log(response);
+//                    console.log('getCityName');
+//                    console.log(response);
                     return response.data.results;
                 })
                 .then(function (response) {
-                console.log(response);
+//                    console.log(response);
                     for (var i = 0; i < response[0].address_components.length; i++) {
                         if (response[0].address_components[i].types.indexOf('locality') !== -1) {
-                            console.log(response[0].address_components[i].long_name);
+//                            console.log(response[0].address_components[i].long_name);
                             return response[0].address_components[i].long_name;
                         }
                     }
@@ -79,6 +86,8 @@ module.exports = (function () {
 
             //Returns the cityName variable
             getCity: getCityName,
+
+            
         };
     });
 })();

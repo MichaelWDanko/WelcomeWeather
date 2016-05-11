@@ -1,5 +1,73 @@
 @import "bourbon/bourbon";
 @import "neat/neat";
+
+$color-stack1: white;
+$font-stack1: 'Raleway', sans-serif;
+
+.columns {
+    margin: 5% 20%;
+}
+html, body {
+    margin: 0;
+    width: 100%;
+}
 header {
-    background-color: royalblue;
+    background-color: #0047BD;
+    padding-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    
+    #header-wrapper {
+    margin: 0;
+//        width: 100%;
+    }
+}
+#location-icon {
+    height: 30px;
+    width: 30px;
+}
+
+main {
+    /* Focus-View Div: */
+background: #0047BD;
+border: 1px solid #979797;
+border-radius: 8px;
+font-family: $font-stack1;
+font-weight: 100;
+height: 300px;
+    color: $color-stack1;
+
+    #left-column {
+        display: inline-block;
+        float: left;
+    }
+    #right-column {
+        display: inline-block;
+        float: right;
+    }
+}
+#nav-wrapper {
+    display: block;
+    clear: both;
+    #navbar {
+        display: flex;
+        list-style: none;
+        border: 1px solid green;
+        justify-content: space-around;
+        li {
+            height: 120px;
+            width: 120px;
+            border: 1px solid lightblue;
+            margin: 0 5px;
+            
+            background: #0047BD;
+            border: 1px solid #979797;
+            border-radius: 8px;
+            color: $color-stack1;
+            font-family: $font-stack1;
+            font-weight: 100;
+        }
+
+    }
 }
