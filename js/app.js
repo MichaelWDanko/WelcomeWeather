@@ -40,7 +40,11 @@ app.config(['$routeProvider', function ($routeProvider) {
 }]);
 
 app.controller('WeatherController', ['$scope', '$http', 'WeatherService', function ($scope, $http, WeatherService) {
+//    $scope.city = 'Default';
     WeatherService.getCity().then(function (response) {
+        console.log('New city' + response);
         $scope.city = response;
+        $scope.$apply();
+        console.log($scope.city);
     });
 }]);
