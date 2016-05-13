@@ -6,6 +6,14 @@ $color-stack1: #0047BD;
 $color-stack3: #979797;
 $font-stack1: 'Helvetica Neue' , 'Helvetica', 'Raleway', sans-serif;
 
+//body > .inner {
+//    display: none;
+//}
+
+body.pg-loaded > .inner {
+    display: block;
+}
+
 .transparent {
     opacity: 50%;
 }

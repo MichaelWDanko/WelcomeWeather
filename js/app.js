@@ -2,10 +2,32 @@
 var angular = require('angular');
 var angularRoute = require('angular-route');
 var moment = require('moment');
+var pleaseWait = require('please-wait').pleaseWait;
 require('./service');
 //require('./templates');
 
+
+
 var app = angular.module('welcomeApp', ['ngRoute', 'WeatherService']);
+//app.run(function () {
+//    loading_screen = pleaseWait({
+//        logo: "images/logo.png",
+//        backgroundColor: "#979797",
+//        loadingHtml: '<div class="spinner"> <div class="bounce1"> </div> <div class="bounce2"> </div> <div class="bounce3"> </div> </div>'
+//    });
+//});
+
+//console.log(pleaseWait);
+var loading_screen = null;
+//window.addEventListener('load', function() {
+//    loading_screen = pleaseWait({
+//    logo: "images/logo.png",
+//    backgroundColor: "#979797",
+//    loadingHtml: '<div class="spinner"> <div class="bounce1"> </div> <div class="bounce2"> </div> <div class="bounce3"> </div> </div>'
+//});
+//
+//    
+//});
 
 /*Router change data*/
 app.config(['$routeProvider', function ($routeProvider) {
@@ -25,10 +47,20 @@ app.config(['$routeProvider', function ($routeProvider) {
 
 app.controller('WeatherController', ['$scope', '$http', 'WeatherService', '$routeParams', function ($scope, $http, WeatherService, $routeParams) {
     //    $scope.city = 'Default';
+    var loading_screen = null;
+    $scope.$on('$viewContentLoaded', function () {
+        console.log('$viewContentLoaded');
+        loading_screen = pleaseWait({
+        logo: "images/logo.png",
+        backgroundColor: "#979797",
+        loadingHtml: '<div class="spinner"> <div class="bounce1"> </div> <div class="bounce2"> </div> <div class="bounce3"> </div> </div>'
+    });
+    });
     WeatherService.getCity().then(function (response) {
         $scope.city = response;
         $scope.$apply();
     });
+
 
     console.log($routeParams.num);
 
@@ -47,8 +79,8 @@ app.controller('WeatherController', ['$scope', '$http', 'WeatherService', '$rout
 
             //An IFFE function that runs to change the background image url the 
             (function (response) {
-//                document.body.style.background = "#ffffff url('../images/backgrounds/clear.jpg') ";
-                document.body.style.background = "#f3f3f3 url('/images/bg_clear.jpg') no-repeat left bottom";
+                //                document.body.style.background = "#ffffff url('../images/backgrounds/clear.jpg') ";
+                document.body.style.background = "#f3f3f3 url('./images/bg_clear.jpg') no-repeat left bottom";
             })();
 
         } else {
@@ -73,6 +105,7 @@ app.controller('WeatherController', ['$scope', '$http', 'WeatherService', '$rout
 
 
         $scope.$apply();
+        loading_screen.finish();
     }); //End of the WeatherService.retrieveWeather() function
 
     //        $scope.date = WeatherService.returnWeather()[$routeParams.num].date;
