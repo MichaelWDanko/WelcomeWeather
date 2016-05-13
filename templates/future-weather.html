@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-   <main class="columns">
+   <main class="columns transparent">
     <div id="left-column">
-        <h2> {{ city }} </h2>
+       <img id="icon" src="../images/icon_clear.png" alt="Weather Icon">
+        <h2 id="cityLabel"> {{ city }} </h2>
         <div id="current-temp">
             <h3>Max Temp: {{ maxTemp }} <img src="../images/fahrenheit.png" alt="The fahrenheit icon"></h3>
             <h3>Min Temp: {{ minTemp }} <img src="../images/fahrenheit.png" alt="The fahrenheit icon"></h3>
@@ -28,23 +29,23 @@
 <div id="nav-wrapper" class="columns">
 <ul id="navbar">
     <a href="#/today/0">
-        <li id="nav-today" class="nav-item">
+        <li id="nav-today" class="nav-item transparent">
             <h2>Today</h2></li>
     </a>
     <a href="#/days-from-now/1">
-        <li id="nav-one" class="nav-item">
+        <li id="nav-one" class="nav-item transparent">
             <h2>{{navOne}} </h2></li>
     </a>
     <a href="#/days-from-now/2">
-        <li id="nav-two" class="nav-item">
+        <li id="nav-two" class="nav-item transparent">
             <h2>{{navTwo}} </h2></li>
     </a>
     <a href="#/days-from-now/3">
-        <li id="nav-three" class="nav-item">
+        <li id="nav-three" class="nav-item transparent">
             <h2>{{navThree}} </h2></li>
     </a>
     <a href="#/days-from-now/4">
-        <li id="nav-four" class="nav-item">
+        <li id="nav-four" class="nav-item transparent">
             <h2>{{navFour}} </h2></li>
     </a>
 </ul>

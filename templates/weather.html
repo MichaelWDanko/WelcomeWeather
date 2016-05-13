@@ -1,7 +1,8 @@
 <!DOCTYPE html>
    <main class="columns">
     <div id="left-column">
-        <h2> {{ city }} </h2>
+       <img id="icon" src="../images/icon_clear.png" alt="Weather Icon">
+        <h2 id="cityLabel"> {{ city }} </h2>
         <div id="current-temp">
             <h3> {{ temp }} <img src="../images/fahrenheit.png" alt="The fahrenheit icon"></h3>
             <h3>Max Temp: {{ maxTemp }} <img src="../images/fahrenheit.png" alt="The fahrenheit icon"></h3>
@@ -15,15 +16,15 @@
     <div id="right-column">
         <div id="current-day-wrapper">
             <h2 id="current-day"> {{ day }} </h2>
-            <h4 id="current-date"> {{date}} </h4>
+            <h3 id="current-date"> {{date}} </h3>
         </div>
         <h4>You might be comfortable wearing:</h4>
         <ul id="suggestin-list" ng-repeat="item in suggest">
 
         </ul>
         <h4>Don't forget to leave the house without these:</h4>
-        <ul>
-            <li></li>
+        <ul id="accessory-list" ng-repeat="item in accessory">
+            
         </ul>
     </div>
 </main>

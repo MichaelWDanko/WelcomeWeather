@@ -26,10 +26,8 @@ app.config(['$routeProvider', function ($routeProvider) {
 app.controller('WeatherController', ['$scope', '$http', 'WeatherService', '$routeParams', function ($scope, $http, WeatherService, $routeParams) {
     //    $scope.city = 'Default';
     WeatherService.getCity().then(function (response) {
-        //        console.log('New city' + response);
         $scope.city = response;
         $scope.$apply();
-        //        console.log($scope.city);
     });
 
     console.log($routeParams.num);
@@ -46,11 +44,18 @@ app.controller('WeatherController', ['$scope', '$http', 'WeatherService', '$rout
             $scope.windspeed = response.current_condition[0].windspeedMiles;
             $scope.maxTemp = response.weather[$routeParams.num].maxtempF;
             $scope.minTemp = response.weather[$routeParams.num].mintempF;
+
+            //An IFFE function that runs to change the background image url the 
+            (function (response) {
+//                document.body.style.background = "#ffffff url('../images/backgrounds/clear.jpg') ";
+                document.body.style.background = "#f3f3f3 url('/images/bg_clear.jpg') no-repeat left bottom";
+            })();
+
         } else {
             $scope.maxTemp = response.weather[$routeParams.num].maxtempF;
             $scope.minTemp = response.weather[$routeParams.num].mintempF;
         }
-        
+
         $scope.sunrise = response.weather[$routeParams.num].astronomy[0].sunrise;
         $scope.sunset = response.weather[$routeParams.num].astronomy[0].sunset;
 
@@ -65,8 +70,10 @@ app.controller('WeatherController', ['$scope', '$http', 'WeatherService', '$rout
         $scope.navFour = moment(response.weather[4].date).format('MM/DD');
 
 
+
+
         $scope.$apply();
-    });
+    }); //End of the WeatherService.retrieveWeather() function
 
     //        $scope.date = WeatherService.returnWeather()[$routeParams.num].date;
 }]);
