@@ -1,8 +1,8 @@
 @import "bourbon/bourbon";
 @import "neat/neat";
 
-$color-stack2: white;
-$color-stack1: #0047BD;
+$color-stack1: white;
+$color-stack2: #0047BD;
 $color-stack3: #979797;
 $font-stack1: 'Helvetica Neue' , 'Helvetica', 'Raleway', sans-serif;
 
@@ -32,7 +32,7 @@ html, body {
 }
 
 header {
-    background-color: $color-stack1;
+    background-color: $color-stack2;
     padding-top: 20px;
     width: 100%;
     display: flex;
