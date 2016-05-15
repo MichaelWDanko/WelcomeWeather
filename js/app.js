@@ -10,7 +10,6 @@ require('./service');
 
 var app = angular.module('welcomeApp', ['ngRoute', 'WeatherService']);
 
-//var loading_screen = null;
 
 /*Router change data*/
 app.config(['$routeProvider', function ($routeProvider) {
@@ -32,12 +31,26 @@ app.controller('WeatherController', ['$scope', '$http', 'WeatherService', '$rout
     //    $scope.city = 'Default';
     var loading_screen = null;
     $scope.$on('$viewContentLoaded', function () {
-        console.log('$viewContentLoaded. Rendering loading screen.');
-        loading_screen = pleaseWait({
-            logo: "images/logo.png",
-            backgroundColor: "#0047BD",
-            loadingHtml: '<div class="spinner"> <div class="bounce1"> </div> <div class="bounce2"> </div> <div class="bounce3"> </div> </div>'
-        });
+
+        /*
+        Test to see whether the loading screen should be run or not.
+        A Boolean is set at initial page load to false. 
+        When page is loaded the first time, it's set to false when loading screen is dismissed.
+        */
+        if (WeatherService.retrievePageLoad() === false) {
+
+            console.log('$viewContentLoaded. Rendering loading screen.');
+            loading_screen = pleaseWait({
+                logo: "images/logo.png",
+                backgroundColor: "#0047BD",
+                loadingHtml: '<div class="spinner"> <div class="bounce1"> </div> <div class="bounce2"> </div> <div class="bounce3"> </div> </div>'
+            });
+        } else {
+            //Delete this else statement after testing/
+            console.log('Page load did not occur');
+        }
+        
+        
     });
     WeatherService.getCity().then(function (response) {
         $scope.city = response;
@@ -55,8 +68,8 @@ app.controller('WeatherController', ['$scope', '$http', 'WeatherService', '$rout
             $scope.temp = response.current_condition[0].temp_F;
             $scope.windspeed = response.current_condition[0].windspeedMiles;
         }
-        
-        
+
+
         $scope.maxTemp = response.weather[$routeParams.num].maxtempF;
         $scope.minTemp = response.weather[$routeParams.num].mintempF;
         $scope.sunrise = response.weather[$routeParams.num].astronomy[0].sunrise;
@@ -66,9 +79,9 @@ app.controller('WeatherController', ['$scope', '$http', 'WeatherService', '$rout
 
         document.body.style.background = "#f3f3f3 url('" + response.weather[$routeParams.num].bgURL + "') no-repeat right top"
         document.body.style.backgroundSize = "cover";
-        
+
         document.getElementById('icon').setAttribute('src', response.weather[$routeParams.num].iconURL);
-        
+
         //$scope.nav~ is the scope used to identify the dates on the nav bar
         $scope.navOne = moment(response.weather[1].date).format('MM/DD');
         $scope.navTwo = moment(response.weather[2].date).format('MM/DD');
@@ -76,7 +89,14 @@ app.controller('WeatherController', ['$scope', '$http', 'WeatherService', '$rout
         $scope.navFour = moment(response.weather[4].date).format('MM/DD');
 
         $scope.$apply();
-        loading_screen.finish();
+        
+        //This sets the initial page load to true so the loading screen does not happen again.
+        WeatherService.setPageLoad(true);
+        
+        if (loading_screen !== null) {
+            loading_screen.finish();
+        }
+        
     }); //End of the WeatherService.retrieveWeather() function
 
 }]);
