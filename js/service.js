@@ -4,6 +4,8 @@
 module.exports = (function () {
     var service = angular.module('WeatherService', []);
 
+
+
     service.factory('WeatherService', function ($http) {
 
         // An array listing the clothes that could be pulled from based upon temp.
@@ -89,7 +91,7 @@ module.exports = (function () {
                 maxTemp: 150
             },
         ];
-
+        var weather = [];
         //An array listing the possible conditions for icons.
         //Sunny -> Cloudy -> Rain -> Snow -> Storm
         var conditionsObject = {
@@ -142,18 +144,33 @@ module.exports = (function () {
             113: 'sunny',
         };
 
+        var coordinates = null;
+
         function getLatLong() {
             return new Promise(function (resolve, reject) {
                 if ("geolocation" in navigator) {
                     console.log(`Geolocation is accessible. Retrieving location`);
-                    navigator.geolocation.getCurrentPosition(function (position) {
 
-                        //resolve is a function that runs when the promise is fulfilled
-                        resolve({
-                            longitude: position.coords.longitude,
-                            latitude: position.coords.latitude,
+                    if (coordinates == null) {
+                        // We don't have position data;
+                        console.log(`No data`);
+                        navigator.geolocation.getCurrentPosition(function (position) {
+
+                            coordinates = position;
+                            //resolve is a function that runs when the promise is fulfilled
+                            resolve({
+                                longitude: position.coords.longitude,
+                                latitude: position.coords.latitude,
+                            });
                         });
-                    });
+                    } else {
+                        //We do have position data
+                        console.log(`Position is set`);
+                        resolve({
+                            longitude: coordinates.coords.longitude,
+                            latitude: coordinates.coords.latitude,
+                        });
+                    }
                 } else {
                     console.log(`Geolocation is not accessible`);
                     reject(`Geolocation is not accessible`);
@@ -163,15 +180,33 @@ module.exports = (function () {
 
         function getCoordinateWeather(longitude, latitude) {
             //Retrieve the weather given a longitude/latitude from WorldWeatherOnline.com
+
+
             return getLatLong().then(function (position) {
 
-                    return $http({
-                        method: 'GET',
-                        url: "http://api.worldweatheronline.com/premium/v1/weather.ashx?key=0bc76a7e21c94295aa7192226160905&q=" + position.latitude + ',' + position.longitude + "&includelocation=yes&num_of_days=5&format=json"
-                    });
+                    if (weather.length == 0) {
+                        //There is no weather data so you must make an API request
+                        console.log('There is no weather data');
+                        return $http({
+                            method: 'GET',
+                            url: "http://api.worldweatheronline.com/premium/v1/weather.ashx?key=0bc76a7e21c94295aa7192226160905&q=" + position.latitude + ',' + position.longitude + "&includelocation=yes&num_of_days=5&format=json",
+
+                        });
+                    } else {
+                        //There is weather information saved so we don't need to.
+                        console.log('There is data');
+                        return weather;
+                    }
+
                 })
                 .then(function (response) {
-                    return response.data.data;
+                    if (weather.length == 0) {
+                        console.log(`Setting data`);
+                        weather = response;
+                        return response.data.data;
+                    } else {
+                        return response.data.data;
+                    }
                 })
                 .then(function (response) {
                     console.log(response);

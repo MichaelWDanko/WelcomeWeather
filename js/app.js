@@ -10,7 +10,6 @@ require('./service');
 
 var app = angular.module('welcomeApp', ['ngRoute', 'WeatherService']);
 
-//var loading_screen = null;
 
 /*Router change data*/
 app.config(['$routeProvider', function ($routeProvider) {
