@@ -145,6 +145,7 @@ module.exports = (function () {
         };
 
         var coordinates = null;
+        var pageLoad = false;
 
         function getLatLong() {
             return new Promise(function (resolve, reject) {
@@ -305,6 +306,12 @@ module.exports = (function () {
             },
             retrieveClothes: function () {
                 return clothesArray;
+            },
+            setPageLoad: function (input) {
+                pageLoad = input;
+            },
+            retrievePageLoad: function () {
+                return pageLoad;
             }
         };
     });
