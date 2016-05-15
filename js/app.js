@@ -67,6 +67,8 @@ app.controller('WeatherController', ['$scope', '$http', 'WeatherService', '$rout
         document.body.style.background = "#f3f3f3 url('" + response.weather[$routeParams.num].bgURL + "') no-repeat right top"
         document.body.style.backgroundSize = "cover";
         
+        document.getElementById('icon').setAttribute('src', response.weather[$routeParams.num].iconURL);
+        
         //$scope.nav~ is the scope used to identify the dates on the nav bar
         $scope.navOne = moment(response.weather[1].date).format('MM/DD');
         $scope.navTwo = moment(response.weather[2].date).format('MM/DD');
