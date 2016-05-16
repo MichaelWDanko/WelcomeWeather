@@ -1,4 +1,5 @@
 # WelcomeWeather
+[![Build Status](https://travis-ci.org/MichaelWDanko/WelcomeWeather.svg?branch=master)](https://travis-ci.org/MichaelWDanko/WelcomeWeather)
 A loading page to start your day. Includes a weather screen to help you plan your day
 
 ###Overview: 
