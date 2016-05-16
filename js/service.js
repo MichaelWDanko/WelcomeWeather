@@ -299,6 +299,9 @@ module.exports = (function () {
             retrieveConditions: function () {
                 return conditionsObject;
             },
+            retrieveTodaysCondition: function (code) {
+                return conditionsObject[code];
+            },
             retrieveClothes: function () {
                 return clothesArray;
             },

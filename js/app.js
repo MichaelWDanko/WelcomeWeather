@@ -49,8 +49,8 @@ app.controller('WeatherController', ['$scope', '$http', 'WeatherService', '$rout
             //Delete this else statement after testing/
             console.log('Page load did not occur');
         }
-        
-        
+
+
     });
     WeatherService.getCity().then(function (response) {
         $scope.city = response;
@@ -67,6 +67,12 @@ app.controller('WeatherController', ['$scope', '$http', 'WeatherService', '$rout
         if ($routeParams.num == 0) {
             $scope.temp = response.current_condition[0].temp_F;
             $scope.windspeed = response.current_condition[0].windspeedMiles;
+
+            document.body.style.background = "#f3f3f3 url('./images/bg/" + WeatherService.retrieveTodaysCondition(response.current_condition[0].weatherCode) + ".jpg') no-repeat fixed right top";
+            document.body.style.backgroundSize = "cover";
+        } else {
+            document.body.style.background = "#f3f3f3 url('" + response.weather[$routeParams.num].bgURL + "') no-repeat fixed right top";
+            document.body.style.backgroundSize = "cover";
         }
 
 
@@ -75,18 +81,15 @@ app.controller('WeatherController', ['$scope', '$http', 'WeatherService', '$rout
         $scope.sunrise = response.weather[$routeParams.num].astronomy[0].sunrise;
         $scope.sunset = response.weather[$routeParams.num].astronomy[0].sunset;
         $scope.day = moment(response.weather[$routeParams.num].date).format('dddd');
-        $scope.date = moment(response.weather[$routeParams.num].date).format('MMMM do, YYYY');
+        $scope.date = moment(response.weather[$routeParams.num].date).format('MMMM Do, YYYY');
 
         console.log('Test');
         console.log(response.weather[$routeParams.num].avgTemp);
-        
-        
+
+
         $scope.suggest = WeatherService.retrieveSuggestions(response.weather[$routeParams.num].avgTemp);
         console.log($scope.suggest);
-        
-        
-        document.body.style.background = "#f3f3f3 url('" + response.weather[$routeParams.num].bgURL + "') no-repeat right top";
-        document.body.style.backgroundSize = "cover";
+
 
         document.getElementById('icon').setAttribute('src', response.weather[$routeParams.num].iconURL);
 
@@ -97,14 +100,14 @@ app.controller('WeatherController', ['$scope', '$http', 'WeatherService', '$rout
         $scope.navFour = moment(response.weather[4].date).format('MM/DD');
 
         $scope.$apply();
-        
+
         //This sets the initial page load to true so the loading screen does not happen again.
         WeatherService.setPageLoad(true);
-        
+
         if (loading_screen !== null) {
             loading_screen.finish();
         }
-        
+
     }); //End of the WeatherService.retrieveWeather() function
 
 }]);
