@@ -8,8 +8,8 @@
             <h3>Min Temp: {{ minTemp }} <img src="../images/fahrenheit.png" alt="The fahrenheit icon"></h3>
 <!--            <img src="../images/fahrenheit.png" alt="The fahrenheit icon">-->
         </div>
-        <h4 id="sunrise">Sunrise: {{ sunrise }} AM </h4>
-        <h4 id="sunset">Sunset: {{ sunset }} PM </h4>
+        <h4 id="sunrise">Sunrise: {{ sunrise }} </h4>
+        <h4 id="sunset">Sunset: {{ sunset }} </h4>
     </div>
     <div id="right-column">
         <div id="current-day-wrapper">
@@ -17,13 +17,15 @@
             <h4 id="current-date"> {{date}} </h4>
         </div>
         <h4>You might be comfortable wearing:</h4>
-        <ul id="suggestin-list" ng-repeat="item in suggest">
-
+        <ul id="suggestion-list">
+            <li ng-repeat="item in suggest"> {{item}} </li>
         </ul>
+<!--
         <h4>Don't forget to leave the house without these:</h4>
         <ul>
             <li></li>
         </ul>
+-->
     </div>
 </main>
 <div id="nav-wrapper" class="columns">
