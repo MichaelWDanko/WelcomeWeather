@@ -85,11 +85,6 @@ module.exports = (function () {
                 minTemp: -150,
                 maxTemp: 54
             },
-//            {
-//                name: 'name',
-//                minTemp: 0,
-//                maxTemp: 150
-//            },
         ];
 
         //An array listing the possible conditions for icons.
@@ -303,6 +298,9 @@ module.exports = (function () {
             getCity: getCityName,
             retrieveConditions: function () {
                 return conditionsObject;
+            },
+            retrieveTodaysCondition: function (code) {
+                return conditionsObject[code];
             },
             retrieveClothes: function () {
                 return clothesArray;

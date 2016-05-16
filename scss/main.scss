@@ -4,6 +4,7 @@
 $color-stack1: white;
 $color-stack2: #0047BD;
 $color-stack3: #979797;
+$highlightColor: #326bca;
 $font-stack1: 'Helvetica Neue' , 'Helvetica', 'Raleway', sans-serif;
 
 //body > .inner {
@@ -15,7 +16,7 @@ body.pg-loaded > .inner {
 }
 
 .transparent {
-    opacity: 50%;
+    opacity: 0.9;
 }
 a {
     text-decoration: none;
@@ -29,11 +30,13 @@ html, body {
     margin: 0;
     width: 100%;
     height: 100%;
+    font-family: $font-stack1;
+    font-weight: 100;
 }
 
 header {
     background-color: $color-stack2;
-    padding-top: 20px;
+    padding-top: 5px;
     width: 100%;
     display: flex;
     justify-content: space-around;
@@ -51,15 +54,15 @@ header {
 main {
     
 display: flex;
-    justify-content: space-around;
+justify-content: space-around;
 padding: 2%;
-margin-top: 3%;
+margin-top: 1%;
 background: $color-stack2;
 border: 1px solid $color-stack3;
 border-radius: 8px;
 font-family: $font-stack1;
 font-weight: 100;
-height: 500px;
+height: 530px;
     color: $color-stack1;
 
     #left-column {
@@ -79,36 +82,80 @@ height: 500px;
     #navbar {
         display: flex;
         list-style: none;
-        border: 3px solid orange;
         justify-content: space-around;
+        flex-wrap: wrap;
         padding: 0;
-        li {
-            height: 120px;
-            width: 120px;
-            margin: 0 5px;
-            background: $color-stack2;
-            border: 1px solid $color-stack3;
-            border-radius: 8px;
-            color: $color-stack1;
-            font-family: $font-stack1;
-            font-weight: 100;
-            text-align: center;
-            }
     }
+}
+
+.nav-item {
+    height: 105px;
+    width: 105px;
+    margin: 0 5px;
+    background: $color-stack2;
+    border: 1px solid $color-stack3;
+    border-radius: 8px;
+    color: $color-stack1;
+    font-family: $font-stack1;
+    font-weight: 100;
+    text-align: center;
+    opacity: 0.8;
+    padding-top: 15px;
+    h2 {
+    font-size: 1.4em;
+    font-weight: 300;
+    }
+}
+.nav-item:hover {
+    background: $highlightColor;
+    color: white;
+    opacity: 1;
+    height: 120px;
+    width: 120px;
+    font-size: 1.3em;
+    font-weight: 500;
 }
 
 #cityLabel {
     font-size: 2.3em;
     margin: 0;
 }
+
+#left-column {
+    h2 {
+        font-weight: 300;
+    }
+    h3, h4 {
+        margin-top: 10px;
+        font-weight: 100;
+    }
+}
 #right-column {
     h2 {
         font-size: 2.4em;
         margin: 0;
         margin-top: 50px;
+        font-weight: 500;
     }
     h3 {
         font-size:  1.8em;
         margin: 0;
+        margin-top: 5px;;
+        font-weight: 400;
     }
+    h4 {
+        font-weight: 300;
+    }
+    li {
+        font-size: 1.3em;
+        margin: 10px 0;
+    }
+}
+
+.data1 {
+    font-size: 2em;
+    
+}
+.data2 {
+    font-size: 1.4em;
 }
