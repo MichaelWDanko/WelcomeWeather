@@ -145,6 +145,7 @@ module.exports = (function () {
         var pageLoad = false;
 
         function getLatLong() {
+            
             return new Promise(function (resolve, reject) {
                 if ("geolocation" in navigator) {
                     console.log(`Geolocation is accessible. Retrieving location`);

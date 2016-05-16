@@ -43,7 +43,7 @@ app.controller('WeatherController', ['$scope', '$http', 'WeatherService', '$rout
             loading_screen = pleaseWait({
                 logo: "images/logo.png",
                 backgroundColor: "#0047BD",
-                loadingHtml: '<div class="spinner"> <div class="bounce1"> </div> <div class="bounce2"> </div> <div class="bounce3"> </div> </div>'
+                loadingHtml: '<div><h1 class="loadingMessage"> Welcome Weather requires your current location.  </h1> <h1 class="loadingMessage"> Loading... </h1></div> <div class="spinner"><div class="cube1"></div> <div class="cube2"></div></div>'
             });
         } else {
             //Delete this else statement after testing/
