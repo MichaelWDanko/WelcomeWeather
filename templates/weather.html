@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-   <main class="columns">
+   <main class="columns transparent">
     <div id="left-column">
        <img id="icon" src="" alt="Weather conditions icon">
         <h2 id="cityLabel"> {{ city }} </h2>
-        <div id="current-temp">
-            <h3> {{ temp }} <img src="../images/fahrenheit.png" alt="The fahrenheit icon"></h3>
-            <h3>Max Temp: {{ maxTemp }} <img src="../images/fahrenheit.png" alt="The fahrenheit icon"></h3>
-            <h3>Min Temp: {{ minTemp }} <img src="../images/fahrenheit.png" alt="The fahrenheit icon"></h3>
+<!--        <div id="current-temp">-->
+            <h3>Current: <span class="data1">{{ temp }}</span> <img src="../images/fahrenheit.png" alt="The fahrenheit icon"></h3>
+            <h3>Max Temperature: <span class="data2">{{ maxTemp }} </span> <img src="../images/fahrenheit.png" alt="The fahrenheit icon"></h3>
+            <h3>Min Temperature: <span class="data2"> {{ minTemp }} </span> <img src="../images/fahrenheit.png" alt="The fahrenheit icon"></h3>
 <!--            <img src="../images/fahrenheit.png" alt="The fahrenheit icon">-->
-        </div>
-        <h4 id="windspeed">Windspeed: {{ windspeed }} MPH</h4>
-        <h4 id="sunrise">Sunrise: {{ sunrise }} </h4>
-        <h4 id="sunset">Sunset: {{ sunset }} </h4>
+<!--        </div>-->
+        <h4 id="windspeed">Windspeed: <span class="data2">{{ windspeed }}</span> MPH</h4>
+        <h4 id="sunrise">Sunrise: <span class="data2">{{ sunrise }} </span> </h4>
+        <h4 id="sunset">Sunset: <span class="data2">{{ sunset }} </span> </h4>
     </div>
     <div id="right-column">
         <div id="current-day-wrapper">
@@ -20,7 +20,7 @@
         </div>
         <h4>You might be comfortable wearing:</h4>
         <ul id="suggestion-list" >
-            <li ng-repeat="item in suggest"> {{ item }} </li>
+            <li ng-repeat="item in suggest" class="suggestion"> {{ item }} </li>
         </ul>
 <!--
         <h4>Don't forget to leave the house without these:</h4>

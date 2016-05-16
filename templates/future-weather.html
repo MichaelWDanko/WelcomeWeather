@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-   <main class="columns transparent">
+<main class="columns transparent">
     <div id="left-column">
-       <img id="icon" src="" alt="Weather conditions icon">
+        <img id="icon" src="" alt="Weather conditions icon">
         <h2 id="cityLabel"> {{ city }} </h2>
         <div id="current-temp">
-            <h3>Max Temp: {{ maxTemp }} <img src="../images/fahrenheit.png" alt="The fahrenheit icon"></h3>
-            <h3>Min Temp: {{ minTemp }} <img src="../images/fahrenheit.png" alt="The fahrenheit icon"></h3>
-<!--            <img src="../images/fahrenheit.png" alt="The fahrenheit icon">-->
+            <h3>Max Temperature: <span class="data2">{{ maxTemp }} </span> <img src="../images/fahrenheit.png" alt="The fahrenheit icon"></h3>
+            <h3>Min Temperature: <span class="data2"> {{ minTemp }} </span> <img src="../images/fahrenheit.png" alt="The fahrenheit icon"></h3>
+            <!--            <img src="../images/fahrenheit.png" alt="The fahrenheit icon">-->
         </div>
-        <h4 id="sunrise">Sunrise: {{ sunrise }} </h4>
-        <h4 id="sunset">Sunset: {{ sunset }} </h4>
+        <h4 id="sunrise">Sunrise: <span class="data2">{{ sunrise }} </span> </h4>
+        <h4 id="sunset">Sunset: <span class="data2">{{ sunset }} </span> </h4>
     </div>
     <div id="right-column">
         <div id="current-day-wrapper">
             <h2 id="current-day"> {{ day }} </h2>
-            <h4 id="current-date"> {{date}} </h4>
+            <h3 id="current-date"> {{date}} </h3>
         </div>
         <h4>You might be comfortable wearing:</h4>
         <ul id="suggestion-list">
-            <li ng-repeat="item in suggest"> {{item}} </li>
+            <li ng-repeat="item in suggest" class="suggestion"> {{item}} </li>
         </ul>
-<!--
+        <!--
         <h4>Don't forget to leave the house without these:</h4>
         <ul>
             <li></li>
@@ -29,26 +29,26 @@
     </div>
 </main>
 <div id="nav-wrapper" class="columns">
-<ul id="navbar">
-    <a href="#/today/0">
-        <li id="nav-today" class="nav-item transparent">
-            <h2>Today</h2></li>
-    </a>
-    <a href="#/days-from-now/1">
-        <li id="nav-one" class="nav-item transparent">
-            <h2>{{navOne}} </h2></li>
-    </a>
-    <a href="#/days-from-now/2">
-        <li id="nav-two" class="nav-item transparent">
-            <h2>{{navTwo}} </h2></li>
-    </a>
-    <a href="#/days-from-now/3">
-        <li id="nav-three" class="nav-item transparent">
-            <h2>{{navThree}} </h2></li>
-    </a>
-    <a href="#/days-from-now/4">
-        <li id="nav-four" class="nav-item transparent">
-            <h2>{{navFour}} </h2></li>
-    </a>
-</ul>
+    <ul id="navbar">
+        <a href="#/today/0">
+            <li id="nav-today" class="nav-item transparent">
+                <h2>Today</h2></li>
+        </a>
+        <a href="#/days-from-now/1">
+            <li id="nav-one" class="nav-item transparent">
+                <h2>{{navOne}} </h2></li>
+        </a>
+        <a href="#/days-from-now/2">
+            <li id="nav-two" class="nav-item transparent">
+                <h2>{{navTwo}} </h2></li>
+        </a>
+        <a href="#/days-from-now/3">
+            <li id="nav-three" class="nav-item transparent">
+                <h2>{{navThree}} </h2></li>
+        </a>
+        <a href="#/days-from-now/4">
+            <li id="nav-four" class="nav-item transparent">
+                <h2>{{navFour}} </h2></li>
+        </a>
+    </ul>
 </div>

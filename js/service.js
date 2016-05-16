@@ -85,11 +85,6 @@ module.exports = (function () {
                 minTemp: -150,
                 maxTemp: 54
             },
-//            {
-//                name: 'name',
-//                minTemp: 0,
-//                maxTemp: 150
-//            },
         ];
 
         //An array listing the possible conditions for icons.
