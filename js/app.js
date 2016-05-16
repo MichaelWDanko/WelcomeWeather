@@ -77,7 +77,15 @@ app.controller('WeatherController', ['$scope', '$http', 'WeatherService', '$rout
         $scope.day = moment(response.weather[$routeParams.num].date).format('dddd');
         $scope.date = moment(response.weather[$routeParams.num].date).format('MMMM do, YYYY');
 
-        document.body.style.background = "#f3f3f3 url('" + response.weather[$routeParams.num].bgURL + "') no-repeat right top"
+        console.log('Test');
+        console.log(response.weather[$routeParams.num].avgTemp);
+        
+        
+        $scope.suggest = WeatherService.retrieveSuggestions(response.weather[$routeParams.num].avgTemp);
+        console.log($scope.suggest);
+        
+        
+        document.body.style.background = "#f3f3f3 url('" + response.weather[$routeParams.num].bgURL + "') no-repeat right top";
         document.body.style.backgroundSize = "cover";
 
         document.getElementById('icon').setAttribute('src', response.weather[$routeParams.num].iconURL);

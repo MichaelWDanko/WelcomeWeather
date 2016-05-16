@@ -85,13 +85,13 @@ module.exports = (function () {
                 minTemp: -150,
                 maxTemp: 54
             },
-            {
-                name: 'name',
-                minTemp: 0,
-                maxTemp: 150
-            },
+//            {
+//                name: 'name',
+//                minTemp: 0,
+//                maxTemp: 150
+//            },
         ];
-        var weather = [];
+
         //An array listing the possible conditions for icons.
         //Sunny -> Cloudy -> Rain -> Snow -> Storm
         var conditionsObject = {
@@ -143,6 +143,8 @@ module.exports = (function () {
             116: 'sunny',
             113: 'sunny',
         };
+        var weather = [];
+//        var suggestionArray = [];
 
         var coordinates = null;
         var pageLoad = false;
@@ -191,14 +193,12 @@ module.exports = (function () {
                         return $http({
                             method: 'GET',
                             url: "http://api.worldweatheronline.com/premium/v1/weather.ashx?key=0bc76a7e21c94295aa7192226160905&q=" + position.latitude + ',' + position.longitude + "&includelocation=yes&num_of_days=5&format=json",
-
                         });
                     } else {
                         //There is weather information saved so we don't need to.
                         console.log('There is data');
                         return weather;
                     }
-
                 })
                 .then(function (response) {
                     if (weather.length == 0) {
@@ -234,11 +234,11 @@ module.exports = (function () {
                         var codeMap = {};
                         var highestCode = countArray[0];
                         var highestCount = 1;
-                        //
-                        //                        /*
-                        //                        This for loop is running through the object codeMap
-                        //                        and is setting highestCode to the most frequent weather code for the day.
-                        //                        */
+
+                        /*
+                        This for loop is running through the object codeMap
+                        and is setting highestCode to the most frequent weather code for the day.
+                        */
                         for (var z = 0; z < countArray.length; z++) {
                             var num = countArray[z];
                             if (codeMap[num] == null) {
@@ -312,7 +312,20 @@ module.exports = (function () {
             },
             retrievePageLoad: function () {
                 return pageLoad;
-            }
+            },
+            retrieveSuggestions: function (temp) {
+                console.log(`Running retrieveSuggestions`);
+                var suggestArray = [];
+                //clothesArray is a list of objects with following properties:
+                //name: minTemp: maxTemp:
+                for (var i = 0; i < clothesArray.length; i++) {
+                    if (temp >= clothesArray[i].minTemp && temp <= clothesArray[i].maxTemp) {
+                        suggestArray.push(clothesArray[i].name);
+                    }
+                } //End of the forLoop running through the possible items
+                console.log(suggestArray);
+                return suggestArray;
+            } // End of the retrieveSuggestions function
         };
     });
 })();
