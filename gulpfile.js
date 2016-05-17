@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var browserify = require('gulp-browserify');
+var deploy = require('gulp-gh-pages');
 
 gulp.task('default', ['html', 'js', 'css']);
 
@@ -36,4 +37,9 @@ gulp.task('watch', function () {
     gulp.watch('./templates/*.html', ['html']);
     gulp.watch('./scss/*.scss', ['css']);
     gulp.watch('./js/*.js', ['js']);
+});
+
+gulp.task('deploy', function() {
+   gulp.src('./public/**/*')
+   .pipe(deploy());
 });
