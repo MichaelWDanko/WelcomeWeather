@@ -4,8 +4,6 @@
 module.exports = (function () {
     var service = angular.module('WeatherService', []);
 
-
-
     service.factory('WeatherService', function ($http) {
 
         // An array listing the clothes that could be pulled from based upon temp.
@@ -139,19 +137,21 @@ module.exports = (function () {
             113: 'sunny',
         };
         var weather = [];
-//        var suggestionArray = [];
 
+        /*
+        These variables are a benchmark to assist in the caching of geolocation
+        and weather service data.
+        */
         var coordinates = null;
         var pageLoad = false;
 
         function getLatLong() {
-            
             return new Promise(function (resolve, reject) {
                 if ("geolocation" in navigator) {
                     console.log(`Geolocation is accessible. Retrieving location`);
 
                     if (coordinates == null) {
-                        // We don't have position data;
+                        // There is no position data;
                         console.log(`No data`);
                         navigator.geolocation.getCurrentPosition(function (position) {
 
@@ -179,8 +179,6 @@ module.exports = (function () {
 
         function getCoordinateWeather(longitude, latitude) {
             //Retrieve the weather given a longitude/latitude from WorldWeatherOnline.com
-
-
             return getLatLong().then(function (position) {
 
                     if (weather.length == 0) {
@@ -271,7 +269,6 @@ module.exports = (function () {
                 });
         }
 
-
         //Using a latitude/longitude paramters, use the Google Geocode API to return the city.
         function getCityName() {
             return getLatLong().then(function (position) {
@@ -285,7 +282,6 @@ module.exports = (function () {
                     return response.data.results;
                 })
                 .then(function (response) {
-                    //                    console.log(response);
                     for (var i = 0; i < response[0].address_components.length; i++) {
                         if (response[0].address_components[i].types.indexOf('locality') !== -1) {
                             return response[0].address_components[i].long_name;
@@ -313,18 +309,18 @@ module.exports = (function () {
                 return pageLoad;
             },
             retrieveSuggestions: function (temp) {
-                console.log(`Running retrieveSuggestions`);
-                var suggestArray = [];
-                //clothesArray is a list of objects with following properties:
-                //name: minTemp: maxTemp:
-                for (var i = 0; i < clothesArray.length; i++) {
-                    if (temp >= clothesArray[i].minTemp && temp <= clothesArray[i].maxTemp) {
-                        suggestArray.push(clothesArray[i].name);
-                    }
-                } //End of the forLoop running through the possible items
-                console.log(suggestArray);
-                return suggestArray;
-            } // End of the retrieveSuggestions function
+                    console.log(`Running retrieveSuggestions`);
+                    var suggestArray = [];
+                    // clothesArray is a list of objects with following properties:
+                    // name: minTemp: maxTemp:
+                    for (var i = 0; i < clothesArray.length; i++) {
+                        if (temp >= clothesArray[i].minTemp && temp <= clothesArray[i].maxTemp) {
+                            suggestArray.push(clothesArray[i].name);
+                        }
+                    } //End of the forLoop running through the possible items
+                    console.log(suggestArray);
+                    return suggestArray;
+                } // End of the retrieveSuggestions function
         };
     });
 })();
