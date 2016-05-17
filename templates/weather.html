@@ -3,12 +3,9 @@
     <div id="left-column">
        <img id="icon" src="" alt="Weather conditions icon">
         <h2 id="cityLabel"> {{ city }} </h2>
-<!--        <div id="current-temp">-->
             <h3>Current: <span class="data1">{{ temp }}</span> <img src="../images/fahrenheit.png" alt="The fahrenheit icon"></h3>
             <h3>Max Temperature: <span class="data2">{{ maxTemp }} </span> <img src="../images/fahrenheit.png" alt="The fahrenheit icon"></h3>
             <h3>Min Temperature: <span class="data2"> {{ minTemp }} </span> <img src="../images/fahrenheit.png" alt="The fahrenheit icon"></h3>
-<!--            <img src="../images/fahrenheit.png" alt="The fahrenheit icon">-->
-<!--        </div>-->
         <h4 id="windspeed">Windspeed: <span class="data2">{{ windspeed }}</span> MPH</h4>
         <h4 id="sunrise">Sunrise: <span class="data2">{{ sunrise }} </span> </h4>
         <h4 id="sunset">Sunset: <span class="data2">{{ sunset }} </span> </h4>
@@ -22,12 +19,6 @@
         <ul id="suggestion-list" >
             <li ng-repeat="item in suggest" class="suggestion"> {{ item }} </li>
         </ul>
-<!--
-        <h4>Don't forget to leave the house without these:</h4>
-        <ul id="accessory-list" ng-repeat="item in accessory">
-            
-        </ul>
--->
     </div>
 </main>
 <div id="nav-wrapper" class="columns">
