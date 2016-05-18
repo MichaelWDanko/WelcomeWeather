@@ -171,21 +171,21 @@ module.exports = (function () {
                             switch (error.code) {
                                 case error.PERMISSION_DENIED:
                                     if (locationCheck === false) {
-                                        alert('Error Code: ' + error.code + '\nUser denied the request for Geolocation');
+                                        alert('Error Code: ' + error.code + '\nUser denied the request for Geolocation \nCheck your browser settings and refresh to try again.');
                                     }
                                     locationCheck = true;
                                     break;
 
                                 case error.POSITION_UNAVAILABLE:
                                     if (locationCheck === false) {
-                                        alert('Error Code: ' + error.code + '\nLocation information is unavailable');
+                                        alert('Error Code: ' + error.code + '\nLocation information is unavailable \nCheck your browser settings and refresh to try again.');
                                     }
                                     locationCheck = true;
                                     break;
 
                                 case error.TIMEOUT:
                                     if (locationCheck === false) {
-                                        alert('Error Code: ' + error.code + '\nThe request to get user information timed out.');
+                                        alert('Error Code: ' + error.code + '\nThe request to get user information timed out. \nCheck your browser settings and refresh to try again.');
                                     }
                                     locationCheck = true;
                                     break;
