@@ -10,7 +10,7 @@ module.exports = (function () {
         var clothesArray = [
             {
                 name: 'Tank-top',
-                minTemp: 75,
+                minTemp: 80,
                 maxTemp: 150,
             },
             {
@@ -20,12 +20,12 @@ module.exports = (function () {
             },
             {
                 name: 'Bathing Suit',
-                minTemp: 75,
+                minTemp: 80,
                 maxTemp: 150
             },
             {
                 name: 'Shorts',
-                minTemp: 70,
+                minTemp: 75,
                 maxTemp: 150
             },
             {
@@ -33,11 +33,11 @@ module.exports = (function () {
                 minTemp: 70,
                 maxTemp: 150
             },
-            {
-                name: 'Sunglasses',
-                minTemp: 0,
-                maxTemp: 150
-            },
+//            {
+//                name: 'Sunglasses',
+//                minTemp: 0,
+//                maxTemp: 150
+//            },
             {
                 name: 'Flip-flops',
                 minTemp: 75,
@@ -46,42 +46,42 @@ module.exports = (function () {
             {
                 name: 'Button down/Long-sleeve shirt',
                 minTemp: 55,
-                maxTemp: 74
+                maxTemp: 69
             },
             {
                 name: 'Light sweater',
-                minTemp: 55,
-                maxTemp: 74
+                minTemp: 60,
+                maxTemp: 73
             },
             {
                 name: 'Pants/Jeans',
                 minTemp: -150,
-                maxTemp: 150
+                maxTemp: 74
             },
             {
                 name: 'Heavy jacket',
                 minTemp: -150,
-                maxTemp: 54
+                maxTemp: 59
             },
             {
                 name: 'Scarf',
                 minTemp: -150,
-                maxTemp: 50
+                maxTemp: 54
             },
             {
                 name: 'Beanie/Ski hat',
                 minTemp: -150,
-                maxTemp: 54
+                maxTemp: 45
             },
             {
                 name: 'Boots',
                 minTemp: -150,
-                maxTemp: 54
+                maxTemp: 40
             },
             {
                 name: 'Gloves',
                 minTemp: -150,
-                maxTemp: 54
+                maxTemp: 45
             },
         ];
 

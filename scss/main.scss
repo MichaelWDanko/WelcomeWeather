@@ -108,12 +108,21 @@ height: 530px;
 }
 .nav-item:hover {
     background: $highlightColor;
-    color: white;
+    color: $color-stack1;
     opacity: 1;
     height: 120px;
     width: 120px;
-    font-size: 1.3em;
     font-weight: 600;
+}
+
+@media (max-width: 1000px) {
+    .nav-item:hover {
+        background: $color-stack2;
+        color: $color-stack1;
+        height: 105px;
+        width: 105px;
+        font-weight: 300; 
+    }
 }
 
 #cityLabel {
