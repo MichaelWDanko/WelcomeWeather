@@ -144,6 +144,12 @@ module.exports = (function () {
         */
         var coordinates = null;
         var pageLoad = false;
+        
+        /*
+        Location check makes sure there is only one error on page load 
+        since two location requests are created.
+        */
+        var locationCheck = false;
 
         function getLatLong() {
             return new Promise(function (resolve, reject) {
@@ -161,6 +167,36 @@ module.exports = (function () {
                                 longitude: position.coords.longitude,
                                 latitude: position.coords.latitude,
                             });
+                        }, function showError(error) {
+                            switch (error.code) {
+                                case error.PERMISSION_DENIED:
+                                    if (locationCheck === false) {
+                                        alert('Error Code: ' + error.code + '\nUser denied the request for Geolocation');
+                                    }
+                                    locationCheck = true;
+                                    break;
+
+                                case error.POSITION_UNAVAILABLE:
+                                    if (locationCheck === false) {
+                                        alert('Error Code: ' + error.code + '\nLocation information is unavailable');
+                                    }
+                                    locationCheck = true;
+                                    break;
+
+                                case error.TIMEOUT:
+                                    if (locationCheck === false) {
+                                        alert('Error Code: ' + error.code + '\nThe request to get user information timed out.');
+                                    }
+                                    locationCheck = true;
+                                    break;
+
+                                case error.UNKNOWN_ERROR:
+                                    if (locationCheck === false) {
+                                        alert('Error Code: ' + error.code + '\nAn unkown error occurred.\nTry refreshing the page to try again.');
+                                    }
+                                    locationCheck = true;
+                                    break;
+                            }
                         });
                     } else {
                         //We do have position data
@@ -172,6 +208,7 @@ module.exports = (function () {
                     }
                 } else {
                     console.log(`Geolocation is not accessible`);
+                    alert('Your browser was unable to retrieve a geolocation. Check your privacy settings and refresh the page.');
                     reject(`Geolocation is not accessible`);
                 }
             });
