@@ -3,6 +3,7 @@ node_js:
   - "stable"
 before_script:
   - npm install -g gulp
+  - npm install --global surge
 script: gulp
 after_success:
   - surge ./public
