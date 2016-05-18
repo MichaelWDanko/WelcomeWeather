@@ -61,12 +61,14 @@ app.controller('WeatherController', ['$scope', '$http', 'WeatherService', '$rout
 
             document.body.style.background = "#f3f3f3 url('./images/bg/" + WeatherService.retrieveTodaysCondition(response.current_condition[0].weatherCode) + ".jpg') no-repeat fixed right top";
             document.body.style.backgroundSize = "cover";
+             document.getElementById('icon').setAttribute('src', './images/' + WeatherService.retrieveTodaysCondition(response.current_condition[0].weatherCode) + '.png');
         } else {
             document.body.style.background = "#f3f3f3 url('" + response.weather[$routeParams.num].bgURL + "') no-repeat fixed right top";
             document.body.style.backgroundSize = "cover";
+             document.getElementById('icon').setAttribute('src', response.weather[$routeParams.num].iconURL);
         }
 
-        document.getElementById('icon').setAttribute('src', response.weather[$routeParams.num].iconURL);
+//        document.getElementById('icon').setAttribute('src', response.weather[$routeParams.num].iconURL);
 
         $scope.maxTemp = response.weather[$routeParams.num].maxtempF;
         $scope.minTemp = response.weather[$routeParams.num].mintempF;
