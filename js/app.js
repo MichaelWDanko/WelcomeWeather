@@ -74,7 +74,7 @@ app.controller('WeatherController', ['$scope', '$http', 'WeatherService', '$rout
         $scope.sunset = response.weather[$routeParams.num].astronomy[0].sunset;
         $scope.day = moment(response.weather[$routeParams.num].date).format('dddd');
         $scope.date = moment(response.weather[$routeParams.num].date).format('MMMM Do, YYYY');
-        $scope.suggest = WeatherService.retrieveSuggestions(response.weather[$routeParams.num].avgTemp);
+        $scope.suggest = WeatherService.retrieveSuggestions(response.weather[$routeParams.num].maxtempF);
     
 
         //$scope.nav~ is the scope used to identify the dates on the nav bar
