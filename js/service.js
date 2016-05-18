@@ -144,6 +144,11 @@ module.exports = (function () {
         */
         var coordinates = null;
         var pageLoad = false;
+        
+        /*
+        Location check makes sure there is only one error on page load 
+        since two location requests are created.
+        */
         var locationCheck = false;
 
         function getLatLong() {
