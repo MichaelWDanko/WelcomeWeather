@@ -3,7 +3,7 @@ var sass = require('gulp-sass');
 var browserify = require('gulp-browserify');
 var deploy = require('gulp-gh-pages');
 
-gulp.task('default', ['html', 'js', 'css']);
+gulp.task('default', ['html', 'js', 'css', 'cname']);
 
 gulp.task('html', function () {
     gulp.src('./templates/*.html')
@@ -37,6 +37,11 @@ gulp.task('watch', function () {
     gulp.watch('./templates/*.html', ['html']);
     gulp.watch('./scss/*.scss', ['css']);
     gulp.watch('./js/*.js', ['js']);
+});
+
+gulp.task('cname', function () {
+   return gulp.src('./CNAME')
+        .pipe(gulp.dest('./public/'));
 });
 
 gulp.task('deploy', function() {
