@@ -223,7 +223,7 @@ module.exports = (function () {
                         console.log('There is no weather data');
                         return $http({
                             method: 'GET',
-                            url: "https://api.worldweatheronline.com/premium/v1/weather.ashx?key=0bc76a7e21c94295aa7192226160905&q=" + position.latitude + ',' + position.longitude + "&includelocation=yes&num_of_days=5&format=json",
+                            url: "https://api.worldweatheronline.com/premium/v1/weather.ashx?key=309b1bb9236a4daaba5184853161007&q=" + position.latitude + ',' + position.longitude + "&includelocation=yes&num_of_days=5&format=json",
                         });
                     } else {
                         //There is weather information saved so we don't need to.
